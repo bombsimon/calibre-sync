@@ -6,19 +6,19 @@ sync() {
     rsync -av --delete "$1" "$2"
 }
 
-CALIBRE_SOURCE="$HOME/Calibre Library/"
-BACKUP_DESTINATION="/Volumes/DATA/books/00.calibre/"
+MASTER="/Volumes/DATA/books/00.calibre/"
+SLAVE="$HOME/Calibre Library/"
 
 printf "Will mirror all the data, including removing files in source.\n"
-printf "Source:      %s\n" "$CALIBRE_SOURCE"
-printf "Destination: %s\n" "$BACKUP_DESTINATION"
+printf "Source:      %s\n" "$MASTER"
+printf "Destination: %s\n" "$SLAVE"
 printf "%s\n" "-"
 
 printf "Are you sure? [y/N] "
 read -r areyousure
 
 if [ "$areyousure" = "y" ]; then
-    sync "$CALIBRE_SOURCE" "$BACKUP_DESTINATION"
+    sync "$MASTER" "$SLAVE"
 else
     printf "Aborting...\n"
 fi
